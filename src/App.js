@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import Content from './Content';
+import Slideshow from './Slideshow';
 import './App.css';
 
 class App extends Component {
+  state = {
+    cats: [
+      'https://i.imgur.com/dejTHdE.jpg',
+      'https://i.imgur.com/7cpsFeQ.jpg',
+      'https://i.imgur.com/ioJ0gtK.jpg',
+      'https://i.imgur.com/xbXN9Y1.png'
+    ],
+    dogs: [
+      'https://i.imgur.com/tnjGTBM.jpg',
+      'https://i.imgur.com/XsaLqi1.jpg',
+      'https://i.imgur.com/2cGhWub.jpg',
+      'https://i.imgur.com/ThWoXl7.jpg'
+    ]
+  }
   render() {
     return (
       <div className="App">
         Hello
-        <Content>
-            <p>This is a trial</p>
-        </Content>
-
-        <Content>
-            <h3>This is a header</h3>
-        </Content>
+        <Slideshow data={this.state.cats} slideTitle="Cat Slideshow"/>
+        <Slideshow data={this.state.dogs} slideTitle="Dogs"/>
       </div>
     );
   }
