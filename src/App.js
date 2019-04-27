@@ -1,34 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
+import SelectedUserDetails from './components/SelectedUserDetails';
+import AddUser from './components/AddUser';
+import Users from './components/Users';
 import './App.css';
-import AppHeader from './components/AppHeader';
-import AppContent from './components/AppContent';
 
-const navItems = ['Home', 'About'];
-const users = [
-  {
-    name: 'Ajith',
-    age: 10
-  },
-  {
-    name: 'Surya',
-    age: 20
-  },
-  {
-    name: 'Vijay',
-    age: 30
+
+class App extends Component {
+  state = {
+    users: [
+      {name:'Ajith', age: 10},
+      {name:'Vijay', age: 20}
+    ],
+    selectedUser: null
+  };
+
+  selectUser = (usr) => {
+    this.setState({
+      selectedUser: usr
+    });
   }
-];
-const App = () => {
-  return (
-    <div className="App">
-        <AppHeader 
-          menu={navItems}
-          appTitle="React From Parent" />
-        <section>
-            <AppContent data={users} />
-        </section>
-    </div>
-  );
+
+  onAddUser = (newUser) => {
+    this.setState({
+      users: [...this.state.users, newUser]
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+          <Users users={this.state.users} selectUser={this.selectUser} />
+          <AddUser onAddUser={this.onAddUser} />
+          <SelectedUserDetails info={this.state.selectedUser} />
+      </div>
+    );
+  }
 }
 
 export default App;
