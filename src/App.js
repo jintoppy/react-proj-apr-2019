@@ -4,6 +4,7 @@ import AddUser from './components/AddUser';
 import Users from './components/Users';
 import './App.css';
 
+const url = 'http://5cc42b1c3f761f001422d42b.mockapi.io/api/users';
 
 class App extends Component {
   state = {

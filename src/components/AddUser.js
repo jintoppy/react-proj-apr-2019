@@ -1,45 +1,52 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 class AddUser extends Component {
-    state = {
-        name: '',
-        age: ''
-    };
+    constructor(props){
+        super(props);
+        this.nameInput = createRef();
+        this.ageInput = createRef();
+    }
+
+    // componentWillMount() {
+    //     console.log('componentWillMount');
+    // }
+
+    // componentDidMount() {
+    //     console.log('componentDidMount');
+    // }
+
+    // componentWillReceiveProps() {
+    //     console.log('componentWillReceiveProps');
+    // }
+
+    // componentDidUpdate() {
+    //     console.log('componentDidUpdate');
+    // }
+
+    // shouldComponentUpdate(nextProps){
+    //     return false;
+    // }
+
     onBtnClick = (e) => {
         e.preventDefault();
-        if(this.state.name){
+        if(this.nameInput.current.value){
             this.props.onAddUser({
-                name: this.state.name,
-                age: this.state.age
+                name: this.nameInput.current.value,
+                age: this.ageInput.current.value
             });
         }
     };
-    onChange = (evnt) => {
-        const { name, value } = evnt.target;
-        this.setState({
-            [name]: value
-        });
-    };
 
     render() {
+        // console.log('inside render');
         return (
             <form>
                 <div>
                     <label>Name</label>
-                    <input 
-                        type="text"
-                        name="name"
-                        value={this.state.name}
-                        onChange={this.onChange}
-                    />   
+                    <input ref={this.nameInput} type="text" />   
                 </div>
                 <div>
                     <label>Age</label>
-                    <input 
-                        type="number"
-                        name="age"
-                        value={this.state.age}
-                        onChange={this.onChange}
-                    />   
+                    <input ref={this.ageInput} type="number" />   
                 </div>
                 <div>
                     <button onClick={this.onBtnClick}>Add User</button>
