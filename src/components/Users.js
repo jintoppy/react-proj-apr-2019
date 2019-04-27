@@ -1,5 +1,5 @@
 import React from 'react';
-
+import withMountAlert from '../withMountAlert';
 const Users = ({users, selectUser}) => {
     const trItems = users.map(user =>{
         return (
@@ -30,4 +30,4 @@ const Users = ({users, selectUser}) => {
     )
 };
 
-export default Users;
+export default withMountAlert(Users, 'Users');

@@ -1,4 +1,6 @@
 import React, { Component, createRef } from 'react';
+import withMountAlert from '../withMountAlert';
+
 class AddUser extends Component {
     constructor(props){
         super(props);
@@ -56,4 +58,4 @@ class AddUser extends Component {
     }
 };
 
-export default AddUser;
+export default withMountAlert(AddUser, 'AddUser Component');

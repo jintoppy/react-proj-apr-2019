@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import SelectedUserDetails from './components/SelectedUserDetails';
 import AddUser from './components/AddUser';
 import Users from './components/Users';
@@ -8,12 +9,18 @@ const url = 'http://5cc42b1c3f761f001422d42b.mockapi.io/api/users';
 
 class App extends Component {
   state = {
-    users: [
-      {name:'Ajith', age: 10},
-      {name:'Vijay', age: 20}
-    ],
+    users: [],
     selectedUser: null
   };
+
+  componentWillMount(){
+    const promise = axios.get(url);
+    promise.then(res => {
+      this.setState({
+        users: res.data
+      });
+    });
+  }
 
   selectUser = (usr) => {
     this.setState({
@@ -21,9 +28,22 @@ class App extends Component {
     });
   }
 
-  onAddUser = (newUser) => {
+  // onAddUser = (newUser) => {
+  //   axios
+  //     .post(url, newUser)
+  //     .then(() => axios.get(url))
+  //     .then(res => {
+  //       this.setState({
+  //         users: res.data
+  //       });
+  //     });
+  // }
+
+  onAddUser = async (newUser) => {
+    await axios.post(url, newUser);
+    const res = await axios.get(url);
     this.setState({
-      users: [...this.state.users, newUser]
+      users: res.data
     });
   }
 
