@@ -3,8 +3,6 @@ const initialState = {
 };
 
 const cartReducer = (state = initialState, action) => {
-    console.log('cartReducer');
-    console.log(action);
     if(action.type === 'ADD_TO_CART'){
         return {
             ...state,

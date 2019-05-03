@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './ProductList.css';
+const url = 'http://5cc42b1c3f761f001422d42b.mockapi.io/api/products';
+
 
 const ProductList = ({ products, addToCart }) => {
         const divItems = products.map(prod => {
