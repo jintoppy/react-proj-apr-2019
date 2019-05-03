@@ -3,7 +3,7 @@ import './AppHeader.css';
 import MiniCart from '../mini-cart/MiniCart';
 
 const AppHeader = () => {
-    return <div class="header">
+    return <div className="header">
         <h3>Shopping Cart</h3>  
         <MiniCart />
     </div>;
