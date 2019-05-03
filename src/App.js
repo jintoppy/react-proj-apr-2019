@@ -18,7 +18,7 @@ class App extends Component {
             <AppHeader />
             <section>
                 <Route exact path="/" component={ProductList} />
-                <Route path="/details/:title" component={ProductDetails} />
+                <Route path="/details/:productId" component={ProductDetails} />
                 <Route path="/about" component={About} />
                 <Route component={About} />
             </section>
