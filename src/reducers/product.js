@@ -8,6 +8,8 @@ const initialState = {
 };
 
 const productReducer = (state = initialState, action) => {
+    console.log('productReducer');
+    console.log(action);
     return state;
 };
 

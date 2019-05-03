@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './ProductList.css';
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, addToCart }) => {
         const divItems = products.map(prod => {
             return (
                 <div key={prod.id} className="product-list-item">
@@ -14,6 +14,7 @@ const ProductList = ({ products }) => {
                     <p>
                         Price: { prod.price }
                     </p>
+                    <button onClick={() => addToCart(prod.id)}>Add to cart</button>
                     <Link to={`/details/${prod.title}`}>View Details</Link>
                 </div>
             )
@@ -31,4 +32,15 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(ProductList)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (prodId) => {
+            dispatch({
+                type: 'ADD_TO_CART',
+                payload: prodId
+            });
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList)

@@ -1,12 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './AppHeader.css';
 import MiniCart from '../mini-cart/MiniCart';
 
-const AppHeader = () => {
+const AppHeader = ({cartList}) => {
     return <div className="header">
         <h3>Shopping Cart</h3>  
-        <MiniCart />
+        <MiniCart cartList={cartList} />
     </div>;
 };
 
-export default AppHeader;
+const mapStateToProps = (state) => {
+    return {
+        cartList: state.cart.list
+    };
+};
+
+export default connect(mapStateToProps)(AppHeader);

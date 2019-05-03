@@ -1,8 +1,8 @@
 import React from 'react';
 import './MiniCart.css';
 
-const MiniCart = () => {
-    return 'MiniCart';
+const MiniCart = ({cartList}) => {
+    return <span>You have {cartList.length} items in your cart</span>;
 };
 
 export default MiniCart;
