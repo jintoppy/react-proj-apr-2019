@@ -7,10 +7,11 @@ const url = 'http://5cc42b1c3f761f001422d42b.mockapi.io/api/products';
 
 class ProductDetails extends Component {
     componentWillMount() {
+        this.props.onGetProductDetails();
         const currentProductId = this.props.match.params.productId;
         axios.get(`${url}/${currentProductId}`)
              .then(res => {
-
+                this.props.onGetProductDetailsSuccess(res.data);
              });
     }
     render(){
@@ -28,7 +29,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-          
+          onGetProductDetails: () => {
+
+          },
+          onGetProductDetailsSuccess: (data) => {
+
+          }
     };
 };
 
