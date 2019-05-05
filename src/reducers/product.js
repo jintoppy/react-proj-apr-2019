@@ -1,3 +1,4 @@
+import productActionTypes from '../actionTypes/product';
 const initialState = {
     list: [],
     loading: false,
@@ -6,22 +7,23 @@ const initialState = {
 
 const productReducer = (state = initialState, action) => {
     switch(action.type){
-        case 'ON_GET_PRODUCT_DETAILS': {
+        case productActionTypes.ON_GET_PRODUCT_DETAILS: {
             return {
                 ...state,
                 loading: true
             };
         }
-        case 'GET_PRODUCTS_SUCCESS':
+        case productActionTypes.GET_PRODUCTS_SUCCESS:
             return {
                 ...state,
                 list: action.payload,
                 loading: false
             };
-        case 'ON_GET_PRODUCT_DETAILS_SUCCESS':
+        case productActionTypes.ON_GET_PRODUCT_DETAILS_SUCCESS:
             return {
                 ...state,
-                selectedProduct: action.payload
+                selectedProduct: action.payload,
+                loading: false
             };
         default:
             return state;

@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { 
+    onGetProducts,
+    onGetProductsSuccess 
+} from '../../actions/product'; 
+import { addToCart } from '../../actions/cart';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './ProductList.css';
@@ -48,21 +53,15 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addToCart: (prodId) => {
-            dispatch({
-                type: 'ADD_TO_CART',
-                payload: prodId
-            });
+            const action = addToCart(prodId);
+            dispatch(action);
         },
         onGetProducts: () => {
-            dispatch({
-                type: 'GET_PRODUCTS'
-            });
+            dispatch(onGetProducts());
         },
         onGetProductsSuccess: (data) => {
-            dispatch({
-                type: 'GET_PRODUCTS_SUCCESS',
-                payload: data
-            });
+            const action = onGetProductsSuccess(data);
+            dispatch(action);
         }
     };
 };

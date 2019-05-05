@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { 
+    onGetProductDetails,
+    onGetProductDetailsSuccess 
+} from '../../actions/product'; 
 import axios from 'axios';
 import './ProductDetails.css';
 
@@ -39,15 +43,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
           onGetProductDetails: () => {
-            dispatch({
-                type: 'ON_GET_PRODUCT_DETAILS'                
-            });
+            dispatch(onGetProductDetails());
           },
           onGetProductDetailsSuccess: (data) => {
-            dispatch({
-                type: 'ON_GET_PRODUCT_DETAILS_SUCCESS',
-                payload: data              
-            });
+            dispatch(onGetProductDetailsSuccess(data));
           }
     };
 };
