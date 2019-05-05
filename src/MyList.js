@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+const url = 'http://5cc42b1c3f761f001422d42b.mockapi.io/api/products';
+
 const MyList = ({listName}) => {
     return (
         <div>

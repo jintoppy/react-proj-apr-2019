@@ -21,11 +21,13 @@ class App extends Component {
     return (
       <div>
         Hello
-        <button 
+        <button
+          id="my-btn-1"
           onClick={this.onFirstBtnClick}>
           First
         </button>
         <button 
+          id="my-btn-2"
           onClick={this.onSecondBtnClick}>
           Second
         </button>
