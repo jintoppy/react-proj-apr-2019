@@ -15,25 +15,39 @@ class ProductDetails extends Component {
              });
     }
     render(){
-        return <div>
-            {this.props.match.params.productId}
-        </div>;
+        const { isInProgress, details } = this.props;
+        if(isInProgress){
+            return <h3>Loading....</h3>
+        }
+        if(details){
+            return <div>
+                <h2>{details.title}</h2>    
+                <p>{details.company}</p>    
+            </div>;
+        }
+        return null;
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-
+        details: state.products.selectedProduct,
+        isInProgress: state.products.loading
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
           onGetProductDetails: () => {
-
+            dispatch({
+                type: 'ON_GET_PRODUCT_DETAILS'                
+            });
           },
           onGetProductDetailsSuccess: (data) => {
-
+            dispatch({
+                type: 'ON_GET_PRODUCT_DETAILS_SUCCESS',
+                payload: data              
+            });
           }
     };
 };
