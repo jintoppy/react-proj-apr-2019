@@ -1,40 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import MyList from './MyList';
 
 import './App.css';
 
-class App extends Component {
-  state = {
-    prodId: '1'
-  }
-  onFirstBtnClick = () => {
-    this.setState({
-      prodId: '1'
-    });
-  }
-  onSecondBtnClick = () => {
-    this.setState({
-      prodId: '2'
-    });
-  }
-  render() {
-    return (
-      <div>
-        Hello
-        <button
-          id="my-btn-1"
-          onClick={this.onFirstBtnClick}>
-          First
-        </button>
-        <button 
-          id="my-btn-2"
-          onClick={this.onSecondBtnClick}>
-          Second
-        </button>
-        <MyList listName={this.state.prodId}  />
-      </div>
-    );
-  }
+const App = () => {
+  const [prodId, setProdId] = useState('1'); // ['1', fn]
+  const onFirstBtnClick = () => {
+    setProdId('1');
+  };
+  const onSecondBtnClick = () => {
+    setProdId('2');
+  };
+  return (
+    <div>
+      Hello
+      <button
+        id="my-btn-1"
+        onClick={onFirstBtnClick}>
+        First
+      </button>
+      <button 
+        id="my-btn-2"
+        onClick={onSecondBtnClick}>
+        Second
+      </button>
+      <MyList listName={prodId}  />
+    </div>
+  );
 }
 
 export default App;
