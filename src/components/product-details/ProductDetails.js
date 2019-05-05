@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { 
-    onGetProductDetails,
-    onGetProductDetailsSuccess 
+    getProductDetails
 } from '../../actions/product'; 
-import axios from 'axios';
 import './ProductDetails.css';
-
-const url = 'http://5cc42b1c3f761f001422d42b.mockapi.io/api/products';
 
 class ProductDetails extends Component {
     componentWillMount() {
-        this.props.onGetProductDetails();
-        const currentProductId = this.props.match.params.productId;
-        axios.get(`${url}/${currentProductId}`)
-             .then(res => {
-                this.props.onGetProductDetailsSuccess(res.data);
-             });
+        this.props.getProductDetails(this.props.match.params.productId);
     }
     render(){
         const { isInProgress, details } = this.props;
@@ -42,11 +33,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-          onGetProductDetails: () => {
-            dispatch(onGetProductDetails());
-          },
-          onGetProductDetailsSuccess: (data) => {
-            dispatch(onGetProductDetailsSuccess(data));
+          getProductDetails: (pId) => {
+            dispatch(getProductDetails(pId));
           }
     };
 };

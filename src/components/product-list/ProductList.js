@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
 import { 
-    onGetProducts,
-    onGetProductsSuccess 
+    getProducts
 } from '../../actions/product'; 
 import { addToCart } from '../../actions/cart';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './ProductList.css';
-const url = 'http://5cc42b1c3f761f001422d42b.mockapi.io/api/products';
+
 
 
 class ProductList extends Component {
     componentWillMount() {
-        this.props.onGetProducts();
-        axios.get(url)
-            .then(res => {
-                this.props.onGetProductsSuccess(res.data);
-            });
+        this.props.getProducts();
     }
     render(){
         const { products, addToCart } = this.props;
@@ -56,12 +51,8 @@ const mapDispatchToProps = (dispatch) => {
             const action = addToCart(prodId);
             dispatch(action);
         },
-        onGetProducts: () => {
-            dispatch(onGetProducts());
-        },
-        onGetProductsSuccess: (data) => {
-            const action = onGetProductsSuccess(data);
-            dispatch(action);
+        getProducts: () => {
+            dispatch(getProducts());
         }
     };
 };
